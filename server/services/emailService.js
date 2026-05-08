@@ -49,12 +49,14 @@ export const sendConfirmationEmail = async (email, auditData) => {
   };
 
   try {
+    console.log(`Attempting to send email to ${email}...`);
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-      throw new Error('Email credentials missing');
+      console.error('Email error: EMAIL_USER or EMAIL_PASS is missing in environment variables');
+      return;
     }
     await transporter.sendMail(mailOptions);
-    console.log(`Confirmation email sent to ${email}`);
+    console.log(`✅ Success! Confirmation email sent to ${email}`);
   } catch (error) {
-    console.error('Email Service Error:', error.message);
+    console.error('❌ Email Service Error Detail:', error);
   }
 };
