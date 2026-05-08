@@ -156,7 +156,7 @@ const ResultPage = () => {
           <div className="flex flex-col md:flex-row gap-2">
             <input 
               readOnly 
-              value={`${window.location.origin}/result/${currentPublicId}`}
+              value={`${window.location.origin}/result/${currentId}`}
               className="flex-1 bg-navy-900 border border-navy-700 rounded-lg px-4 py-3 text-gray-400 text-sm focus:outline-none"
             />
             <button 
