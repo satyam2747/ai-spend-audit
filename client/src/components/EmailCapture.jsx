@@ -3,6 +3,7 @@ import { useState } from 'react';
 const EmailCapture = ({ onSubmit, totalMonthlySavings }) => {
   const [formData, setFormData] = useState({ email: '', company: '', role: '' });
   const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -10,10 +11,22 @@ const EmailCapture = ({ onSubmit, totalMonthlySavings }) => {
     setTimeout(() => {
       onSubmit(formData);
       setLoading(false);
+      setSubmitted(true);
+      setTimeout(() => setSubmitted(false), 2000);
     }, 1000);
   };
 
   const isHighSaving = totalMonthlySavings > 500;
+
+  if (submitted) {
+    return (
+      <div className="bg-navy-800 rounded-3xl p-12 border border-navy-700 shadow-2xl text-center animate-in zoom-in-95 duration-300">
+        <div className="text-5xl mb-4">✅</div>
+        <h3 className="text-3xl font-bold text-white mb-2">Success!</h3>
+        <p className="text-gray-400">Check your email for the full report.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-navy-800 rounded-3xl p-8 border border-navy-700 shadow-2xl overflow-hidden relative">

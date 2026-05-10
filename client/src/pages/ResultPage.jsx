@@ -49,6 +49,15 @@ const ResultPage = () => {
   }, [publicId, navigate]);
 
   useEffect(() => {
+    if (auditData) {
+      document.title = `I could save $${auditData.totalMonthlySavings.toLocaleString()}/mo on AI tools - SpendAudit`;
+    }
+    return () => {
+      document.title = 'SpendAudit - Optimize Your AI Spend';
+    };
+  }, [auditData]);
+
+  useEffect(() => {
     if (currentId && !summary && auditData) {
       setSummaryLoading(true);
       getAuditSummary(currentId)
