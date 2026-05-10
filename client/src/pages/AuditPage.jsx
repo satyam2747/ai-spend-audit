@@ -69,7 +69,7 @@ const AuditPage = () => {
         totalAnnualSavings: auditResults.totalAnnualSavings
       });
 
-      localStorage.setItem('audit_results', JSON.stringify(auditResults));
+      localStorage.setItem('auditResults', JSON.stringify(auditResults));
       localStorage.setItem('current_audit_id', publicId);
       navigate(`/result/${publicId}`);
     } catch (error) {

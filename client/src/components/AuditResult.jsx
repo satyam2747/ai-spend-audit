@@ -1,11 +1,13 @@
 const AuditResult = ({ results }) => {
+  if (!results || results.length === 0) return null;
+
   return (
     <div className="space-y-4 mb-12">
       <h3 className="text-2xl font-bold text-white mb-6">Detailed Breakdown</h3>
       {results.map((res, index) => (
         <div 
           key={index} 
-          className={`bg-white rounded-2xl p-6 flex flex-col md:flex-row justify-between items-start md:items-center border-l-8 transition-transform hover:scale-[1.01] shadow-xl ${
+          className={`bg-slate-50 rounded-2xl p-6 flex flex-col md:flex-row justify-between items-start md:items-center border-l-8 transition-transform hover:scale-[1.01] shadow-xl ${
             res.status === 'overspending' ? 'border-savings' : 
             res.status === 'redundant' ? 'border-orange-500' : 
             res.status === 'suggestion' ? 'border-blue-500' : 'border-gray-300'
@@ -29,8 +31,8 @@ const AuditResult = ({ results }) => {
             </div>
             
             {res.monthlySaving > 0 && (
-              <div className="bg-savings/10 px-3 py-1 rounded text-savings font-bold mt-1">
-                +${res.monthlySaving}/mo
+              <div className="text-savings font-bold mt-1">
+                Save ${res.monthlySaving.toLocaleString()}/mo
               </div>
             )}
           </div>

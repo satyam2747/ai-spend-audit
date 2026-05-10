@@ -29,7 +29,7 @@ const ResultPage = () => {
           setAuditData(data);
           if (data.aiSummary) setSummary(data.aiSummary);
         } else {
-          const saved = localStorage.getItem('audit_results');
+          const saved = localStorage.getItem('auditResults');
           if (!saved) {
             navigate('/audit');
             return;
@@ -82,9 +82,10 @@ const ResultPage = () => {
   };
 
   if (loading) return (
-    <div className="min-h-screen bg-navy-900 flex flex-col items-center justify-center text-white">
-      <div className="w-12 h-12 border-4 border-savings border-t-transparent rounded-full animate-spin mb-4"></div>
-      <p className="text-xl font-medium">Analyzing your spend data...</p>
+    <div className="min-h-screen bg-navy-900 flex flex-col items-center justify-center text-white p-4 text-center">
+      <div className="w-16 h-16 border-4 border-savings border-t-transparent rounded-full animate-spin mb-6"></div>
+      <p className="text-2xl font-bold mb-2">Analyzing your spend data...</p>
+      <p className="text-gray-400">Finding the best optimization opportunities for your team.</p>
     </div>
   );
 
@@ -94,7 +95,7 @@ const ResultPage = () => {
       <h2 className="text-2xl font-bold mb-4">{error}</h2>
       <button 
         onClick={() => window.location.reload()}
-        className="bg-savings text-navy-900 px-8 py-3 rounded-xl font-bold"
+        className="bg-savings text-navy-900 px-8 py-3 rounded-xl font-bold hover:scale-105 transition-transform"
       >
         Try Again
       </button>
@@ -104,7 +105,7 @@ const ResultPage = () => {
   if (!auditData) return null;
 
   return (
-    <div className="min-h-screen bg-navy-900 relative">
+    <div className="min-h-screen bg-navy-900 relative text-white">
       <Navbar />
       
       {/* Email Success Toast */}
@@ -123,33 +124,33 @@ const ResultPage = () => {
         </div>
 
         <SavingsHero 
-          totalMonthlySavings={auditData.totalMonthlySavings}
           totalAnnualSavings={auditData.totalAnnualSavings}
         />
 
-        <div className="bg-navy-800/50 rounded-3xl p-6 md:p-8 border border-navy-700 mb-12 relative overflow-hidden">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="text-2xl">✨</span>
-            <h3 className="text-2xl font-bold text-white">AI Analysis</h3>
-            {summaryLoading && <div className="ml-2 w-4 h-4 border-2 border-savings border-t-transparent rounded-full animate-spin"></div>}
-          </div>
-          
-          {summary ? (
-            <p className="text-gray-300 leading-relaxed italic animate-in fade-in duration-700">
-              "{summary}"
-            </p>
-          ) : summaryLoading ? (
-            <div className="space-y-2">
-              <div className="h-4 bg-navy-900/50 rounded w-full animate-pulse"></div>
-              <div className="h-4 bg-navy-900/50 rounded w-5/6 animate-pulse"></div>
-              <div className="h-4 bg-navy-900/50 rounded w-4/6 animate-pulse"></div>
-            </div>
-          ) : (
-            <p className="text-gray-500 italic">Analysis summary unavailable. Refer to breakdown below.</p>
-          )}
-        </div>
-
         <AuditResult results={auditData.auditResults || auditData.results} />
+
+        {/* AI SUMMARY CARD - Below recommendations */}
+        {(summary || summaryLoading) && (
+          <div className="bg-navy-800/50 rounded-3xl p-6 md:p-8 border border-navy-700 mb-12 relative overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="text-2xl">✨</span>
+              <h3 className="text-2xl font-bold text-white">AI Analysis</h3>
+              {summaryLoading && <div className="ml-2 w-4 h-4 border-2 border-savings border-t-transparent rounded-full animate-spin"></div>}
+            </div>
+            
+            {summaryLoading ? (
+              <div className="space-y-3">
+                <div className="h-4 bg-navy-900/50 rounded w-full animate-pulse"></div>
+                <div className="h-4 bg-navy-900/50 rounded w-5/6 animate-pulse"></div>
+                <div className="h-4 bg-navy-900/50 rounded w-4/6 animate-pulse"></div>
+              </div>
+            ) : (
+              <p className="text-gray-300 leading-relaxed italic">
+                "{summary}"
+              </p>
+            )}
+          </div>
+        )}
 
         <div className="bg-navy-800/30 rounded-2xl p-6 border border-dashed border-navy-700 mb-12 text-center">
           <p className="text-gray-500 mb-2 font-medium">Share this audit with your team:</p>
