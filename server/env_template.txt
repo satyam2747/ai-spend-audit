@@ -1,7 +1,0 @@
-PORT=5000
-MONGO_URI=mongodb+srv://satyamyadavgkp1_db_user:Satyam1803@satyam-cluster.wo8wkml.mongodb.net/ai-spend-audit?retryWrites=true&w=majority&appName=Satyam-Cluster
-NODE_ENV=development
-ANTHROPIC_API_KEY=your_key_here
-EMAIL_USER=your_gmail@gmail.com
-EMAIL_PASS=your_gmail_app_password
-FRONTEND_URL=http://localhost:5173
