@@ -7,8 +7,8 @@ Built for the **Credex** startup internship assignment.
 ---
 
 ## 🔗 Try it Out
-*   **Live Web App:** [View on Vercel](https://ai-spend-audit-em94v0791-satyam-yadavs-projects-8eb02c94.vercel.app/)
-*   **Backend API:** [View on Render](https://ai-spend-audit-6inw.onrender.com)
+*   **Live Web App:** [View on Vercel](https://ai-spend-audit-ite724249-satyam-yadavs-projects-8eb02c94.vercel.app/)
+*   **Backend API:** [View on Render(https://ai-spend-audit-6inw.onrender.com)
 
 ---
 
